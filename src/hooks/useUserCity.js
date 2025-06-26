@@ -9,7 +9,7 @@ const useUserCity = () => {
         const ipRes = await fetch("https://api.ipify.org?format=json")
         const { ip } = await ipRes.json()
 
-        const locationRes = await fetch(`http://ip-api.com/json/${ip}`)
+        const locationRes = await fetch(`https://ip-api.com/json/${ip}`)
         const locationData = await locationRes.json()
 
         setCity(locationData.city)
