@@ -9,10 +9,14 @@ const useUserCity = () => {
         const ipRes = await fetch("https://api.ipify.org?format=json")
         const { ip } = await ipRes.json()
 
-        const locationRes = await fetch(`https://ip-api.com/json/${ip}`)
+        const locationRes = await fetch(`https://ipwho.is/${ip}`)
         const locationData = await locationRes.json()
 
-        setCity(locationData.city)
+        if (locationData.success) {
+          setCity(locationData.city)
+        } else {
+          console.error("Failed to fetch location:", locationData.message)
+        }
       } catch (err) {
         console.error("Error fetching user city:", err)
       }
